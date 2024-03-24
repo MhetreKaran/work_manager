@@ -16,7 +16,7 @@ export const CustomNavbar = () => {
       <div>
         <ul className='flex space-x-2'>
           <li>Login</li>
-          <li>Signup</li>
+          <li><Link href="/sign-up">Signup</Link></li>
           </ul>
       </div>
     </div>

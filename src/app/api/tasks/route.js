@@ -22,11 +22,13 @@ export async function POST(request) {
     const task = new Task({
       title,
       content,
-      userId,
+      // userId,
     });
+    console.log(task);
     const createTask = await task.save();
     return NextResponse.json(createTask,{status:201})
   } catch (error) {
+    console.log(error);
     return NextResponse.json({
         message:'Failed to create Task !!',
         status:false
