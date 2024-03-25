@@ -3,30 +3,43 @@ import { createUserApi } from "@/services/taskService";
 import React, { useState } from "react";
 
 const Signup = () => {
-    const [user, setUser] = useState({
-        name:'',
-        email:'',
-        password:'',
-        profileURL:'',
-        about:''
-    });
-    const handleSignUpForm = async (event) =>{
-        event.preventDefault();
-        console.log(user);
-        try {
-            const result = await createUserApi(user);
-            console.log(result);
-        } catch (error) {
-            console.log(error);
-        }
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    profileURL: "",
+    about: "",
+  });
+  const handleSignUpForm = async (event) => {
+    event.preventDefault();
+    console.log(user);
+    try {
+      const result = await createUserApi(user);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
     }
+  };
+  const clearForm = () => {
+    console.log("clear called");
+    setUser({
+      name: "",
+      email: "",
+      password: "",
+      profileURL: "",
+      about: "",
+    });
+  };
   return (
     <div className="grid grid-cols-12 justify-center m-4">
-      <div className="border-white justify-center col-span-8 shadow-sm">
-        <div className="container my-4 lg:px-20">
-          <form className="w-full p-8 my-4 md:px-12  rounded-2xl shadow-2xl border" onSubmit={handleSignUpForm}>
+    <div className="border-white col-span-6 col-start-4 px-5 rounded-2xl shadow-2xl border">
+        <div className="container my-4">
+          <form
+            className="w-full my-4 md:px-12"
+            onSubmit={handleSignUpForm}
+          >
             <div className="flex">
-              <h1 className="font-bold uppercase text-5xl">Sign Up Form</h1>
+              <h1 className="font-bold uppercase text-4xl">Sign Up Form</h1>
             </div>
             <div className="grid grid-cols-1 gap-5 mt-5">
               <input
@@ -34,70 +47,84 @@ const Signup = () => {
                 type="text"
                 placeholder="First Name*"
                 name="name"
-                onChange={(event)=>{
-                    setUser({
-                        ...user,
-                        name:event.target.value
-                    })
+                onChange={(event) => {
+                  setUser({
+                    ...user,
+                    name: event.target.value,
+                  });
                 }}
+                value={user.name}
               />
               <input
                 className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                 type="email"
                 placeholder="Email*"
                 name="email"
-                onChange={(event)=>{
-                    setUser({
-                        ...user,
-                        email:event.target.value
-                    })
+                onChange={(event) => {
+                  setUser({
+                    ...user,
+                    email: event.target.value,
+                  });
                 }}
+                value={user.email}
               />
               <input
                 className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                type="text"
+                type="password"
                 placeholder="Password*"
                 name="password"
-                onChange={(event)=>{
-                    setUser({
-                        ...user,
-                        password:event.target.value
-                    })
+                onChange={(event) => {
+                  setUser({
+                    ...user,
+                    password: event.target.value,
+                  });
                 }}
+                value={user.password}
               />
               <input
                 className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                 id="file_input"
                 type="file"
                 name="profileURL"
-                onChange={(event)=>{
-                    setUser({
-                        ...user,
-                        profileURL:event.target.value
-                    })
+                onChange={(event) => {
+                  setUser({
+                    ...user,
+                    profileURL: event.target.value,
+                  });
                 }}
+                value={user.profileURL}
               />
             </div>
             <div className="my-4">
               <textarea
                 placeholder="About*"
                 name="about"
-                onChange={(event)=>{
-                    setUser({
-                        ...user,
-                        about:event.target.value
-                    })
+                onChange={(event) => {
+                  setUser({
+                    ...user,
+                    about: event.target.value,
+                  });
                 }}
-                className="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                value={user.about}
+                className="w-full h-24 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
               ></textarea>
             </div>
 
             <div className="flex justify-end">
               <button
+                type="submit"
                 className="uppercase text-sm font-bold tracking-wide bg-blue-900 text-gray-100 p-3 rounded-lg w-auto 
                           focus:outline-none focus:shadow-outline"
               >
                 Sign Up
+              </button>
+              <button
+                type="button"
+                onClick={clearForm}
+                className="uppercase text-sm font-bold tracking-wide bg-red-900 text-gray-100 p-3 rounded-lg w-auto f
+                          focus:outline-none focus:shadow-outline ml-4"
+              >
+                Clear
               </button>
             </div>
           </form>
