@@ -1,7 +1,8 @@
 "use client";
+import { userLoginApi } from "@/redux/asyncAction";
 import React, { useState } from "react";
 import { useRouter } from "../../../node_modules/next/navigation";
-import { userLoginApi } from "../../services/userService";
+import { useDispatch } from "../../../node_modules/react-redux/dist/react-redux";
 
 const Login = () => {
   const router = useRouter();
@@ -9,6 +10,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
   const submitLoginForm = async (event) => {
     event.preventDefault();
     console.log(loginData);
@@ -16,8 +18,7 @@ const Login = () => {
       return;
     }
     try {
-     const result = await userLoginApi(loginData);
-     console.log(result);
+      dispatch(userLoginApi(loginData));
      router.push("/profile/user")
     } catch (error) {
       console.log(error);

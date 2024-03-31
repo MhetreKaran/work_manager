@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
-import { signUpUser } from "./asyncAction";
+import { signUpUser, userLoginApi } from "./asyncAction";
 
 const initialState = {
     users: [{
@@ -19,6 +19,9 @@ export const userSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(signUpUser.fulfilled, (state, { payload }) => {
             toast.success("signup successfully")
+        })
+        builder.addCase(userLoginApi.fulfilled, (state, { payload }) => {
+            toast.success("Login successfully")
         })
     }
 })

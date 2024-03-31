@@ -2,7 +2,7 @@ import { httpAxios } from "@/helper/httpHelper";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const userLoginApi = createAsyncThunk(
-  "addUserSlice/userLoginApi",
+  "userLoginApi",
   async (loginData) => {
     try {
       const result = await httpAxios
@@ -14,7 +14,7 @@ export const userLoginApi = createAsyncThunk(
     }
   }
 );
-export const createUserApi = createAsyncThunk("addUserSlice/createUserApi", async (user) => {
+export const createUserApi = createAsyncThunk("createUserApi", async (user) => {
   try {
     const result = await httpAxios
       .post("/api/users", user)
