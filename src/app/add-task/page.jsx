@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { addTaskApi } from "../../services/taskService";
+import { useDispatch } from "../../../node_modules/react-redux/dist/react-redux";
+import { addTaskApi } from "../../redux/asyncAction";
 // export const metadata = {
 //   title: "Add Task: Work Manager",
 // };
 const addTask = () => {
+  const dispatch = useDispatch();
   const [task, setTask] = useState({
     title: "",
     content: "",
@@ -16,8 +18,7 @@ const addTask = () => {
     console.log(task);
     // validate task data
     try {
-      const result = await addTaskApi(task);
-      console.log(result);
+      dispatch(addTaskApi(task));
     } catch (error) {
       console.log(error);
     }

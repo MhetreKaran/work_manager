@@ -2,7 +2,11 @@ import { CustomNavbar } from "@/components/CustomNavbar";
 import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import {Providers} from "../redux/providers"
+import { connectDb } from "../../src/helper/db";
 import "./globals.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,11 +20,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  connectDb();
   return (
     <html lang="en">
       <body className={inter.className}>
+        <ToastContainer />
         <CustomNavbar />
-        <div>{children}</div>
+        <Providers>{children}</Providers>
         <Footer />
       </body>
     </html>

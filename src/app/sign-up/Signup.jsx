@@ -1,6 +1,7 @@
 "use client";
-import { createUserApi } from "@/services/taskService";
+import { signUpUser } from "../../redux/asyncAction";
 import React, { useState } from "react";
+import { useDispatch } from "../../../node_modules/react-redux/dist/react-redux";
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -10,12 +11,14 @@ const Signup = () => {
     profileURL: "",
     about: "",
   });
+  const dispatch = useDispatch();
   const handleSignUpForm = async (event) => {
     event.preventDefault();
     console.log(user);
     try {
-      const result = await createUserApi(user);
-      console.log(result);
+      dispatch(signUpUser(user));
+      clearForm();
+
     } catch (error) {
       console.log(error);
     }

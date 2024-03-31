@@ -1,8 +1,8 @@
 import { User } from "@/models/user";
 import { NextResponse } from "next/server";
-import { connectDb } from "../../../helper/db";
+
 import bcrypt from "bcryptjs";
-connectDb();
+
 export async function GET() {
   let users = [];
   try {
